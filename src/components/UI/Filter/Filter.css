@@ -1,0 +1,24 @@
+.Filter {
+    background-color: #fff;
+    /* border: 1px solid #eaeaea; */
+    border: 1px solid transparent;
+    color: #333333;
+    cursor: pointer;
+    font-size: .9rem;
+    height: 47px;
+    padding: 0 10px;
+}
+
+.Filter:active,
+.Filter:focus {
+    border: 1px solid #eaeaea;
+    outline: none;
+}
+
+.Filter > option:first-child {
+    color: #888888;
+}
+
+.Filter > option {
+    padding: 10px;
+}

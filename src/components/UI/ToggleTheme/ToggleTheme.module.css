@@ -1,0 +1,20 @@
+.ToggleTheme {
+    align-items: center;
+    background-color: transparent;
+    border: 0;
+    cursor: pointer;
+    display: flex;
+    outline: none;
+}
+
+.ThemeIcon {
+    height: 20px;
+    margin-right: 10px;
+    width: 20px;
+}
+
+.ThemeStatus {
+    color: #333333;
+    font-size: 1rem;
+    font-weight: 500;
+}
