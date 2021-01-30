@@ -1,5 +1,7 @@
-import Country from './Country/Country';
-import classes from './Countries.module.css';
+import { Link } from "react-router-dom";
+
+import Country from "./Country/Country";
+import classes from "./Countries.module.css";
 
 const countries = (props) => {
     let countries = null;
@@ -9,25 +11,26 @@ const countries = (props) => {
             <>
                 {props.countries.map((country, index) => {
                     return (
-                        <Country
+                        <Link
                             key={country.alpha3Code}
-                            name={country.name}
-                            population={country.population}
-                            region={country.region}
-                            capital={country.capital}
-                            flag={country.flag}
-                        ></Country>
+                            to={`/country/${country.name.toLowerCase()}`}
+                        >
+                            <Country
+                                key={country.alpha3Code}
+                                name={country.name}
+                                population={country.population}
+                                region={country.region}
+                                capital={country.capital}
+                                flag={country.flag}
+                            ></Country>
+                        </Link>
                     );
                 })}
             </>
         );
     }
 
-    return (
-        <div className={classes.Countries}>
-            {countries}
-        </div>
-    );
-}
+    return <div className={classes.Countries}>{countries}</div>;
+};
 
 export default countries;

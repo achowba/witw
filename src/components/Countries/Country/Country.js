@@ -2,7 +2,6 @@ import classes from './Country.module.css';
 
 const country = (props) => (
     <div className={classes.Country}>
-        {/* <img className={classes.Flag} src={props.flag} alt="" /> */}
         <div className={classes.Flag} style={{backgroundImage: `url(${props.flag})`}} alt=""></div>
         <article className={classes.Card}>
             <h4 className={classes.Name}>{props.name}</h4>
