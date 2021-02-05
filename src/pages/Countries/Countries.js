@@ -1,7 +1,27 @@
 import { Link } from "react-router-dom";
+import styled from "styled-components";
 
 import Country from "./Country/Country";
-import classes from "./Countries.module.css";
+
+const CountryWrapper = styled.div`
+    display: grid;
+    gap: 40px;
+    grid-template-columns: repeat(4, 1fr);
+    margin-bottom: 40px;
+    padding: 0 5%;
+
+    @media (max-width: 1200px) {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    @media (max-width: 1000px) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: 700px) {
+        grid-template-columns: 1fr;
+    }
+`;
 
 const countries = (props) => {
     let countries = null;
@@ -30,7 +50,8 @@ const countries = (props) => {
         );
     }
 
-    return <div className={classes.Countries}>{countries}</div>;
+    // return <div className={classes.Countries}>{countries}</div>;
+    return <CountryWrapper>{countries}</CountryWrapper>;
 };
 
 export default countries;

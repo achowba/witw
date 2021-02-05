@@ -1,9 +1,30 @@
 import { Component } from "react";
-
-import classes from "./ToggleTheme.module.css";
+import styled, { withTheme } from "styled-components";
 
 import LightLogo from "../../../assets/img/sun.svg";
 import DarkLogo from "../../../assets/img/moon.svg";
+
+const ToggleThemeButton = styled.button`
+    align-items: center;
+    background-color: transparent;
+    border: 0;
+    cursor: pointer;
+    display: flex;
+    outline: none;
+
+    .__icon {
+        height: 20px;
+        margin-right: 10px;
+        width: 20px;
+    }
+
+    .__status {
+        color: ${props => props.theme.boldText};
+        content: "Yes";
+        font-size: 1rem;
+        font-weight: 500;
+    }
+`;
 
 class ToggleTheme extends Component {
     constructor() {
@@ -22,24 +43,24 @@ class ToggleTheme extends Component {
 
     render() {
         const theme = {
-            icon: this.state.isDark ? LightLogo : DarkLogo,
-            status: this.state.isDark ? "Light Mode" : "Dark Mode",
+            icon: this.props.theme.isDark ? LightLogo : DarkLogo,
+            status: this.props.theme.isDark ? "Light Mode" : "Dark Mode",
         };
 
         return (
-            <button
-                className={classes.ToggleTheme}
-                onClick={this.toggleThemeHandler}
+            <ToggleThemeButton
+                onClick={this.props.toggled}
                 title={`Switch to ${theme.status}`}
             >
                 <img
-                    className={classes.ThemeIcon}
+                    className="__icon"
                     src={theme.icon}
-                    alt="Toggle Theme" />
-                <p className={classes.ThemeStatus}>{theme.status}</p>
-            </button>
+                    alt="Toggle Theme"
+                />
+                <p className="__status">{theme.status}</p>
+            </ToggleThemeButton>
         );
     }
 }
 
-export default ToggleTheme;
+export default withTheme(ToggleTheme);

@@ -1,13 +1,28 @@
 import React, { Component } from "react";
+import styled from "styled-components";
 
 import axios from "../../helpers/axios";
 
-import NavBar from "../../components/Navigation/NavBar/NavBar";
 import Filter from "../../components/UI/Filter/Filter";
-import Countries from "../../components/Countries/Countries";
+import Countries from "../../pages/Countries/Countries";
+import NavBar from "../../components/Navigation/NavBar/NavBar";
 import SearchBar from "../../components/UI/SearchBar/SearchBar";
 
-import classes from "./Layout.module.css";
+const LayoutWrapper = styled.div`
+    & > .__browse {
+        align-items: center;
+        display: flex;
+        justify-content: space-between;
+        margin: 0 5% 60px 5%;
+    }
+
+    @media (max-width: 700px) {
+        & > .__browse {
+            align-items: flex-start;
+            flex-direction: column;
+        }
+    }
+`;
 
 class Layout extends Component {
     constructor() {
@@ -48,11 +63,9 @@ class Layout extends Component {
     };
 
     filterHandler = (e) => {
-        const input = e.target.value;
-        this.setState({
-            filterTerm: input,
-        });
-        this.filterCountries(input);
+        const region = e.target.value.toLowerCase();
+        this.setState({ filterTerm: region });
+        this.filterByRegion(region);
     };
 
     searchCountries = (query) => {
@@ -85,7 +98,7 @@ class Layout extends Component {
         }
     };
 
-    filterCountries = (region) => {
+    filterByRegion = (region) => {
         const countries = [...this.state.initialCountries];
 
         if (region === "") {
@@ -108,9 +121,9 @@ class Layout extends Component {
 
     render() {
         return (
-            <>
-                <NavBar />
-                <div className={classes.Browse}>
+            <LayoutWrapper>
+                <NavBar toggled={this.props.toggled}/>
+                <div className="__browse">
                     <SearchBar
                         searched={(e) => this.searchHandler(e)}
                         searchTerm={this.state.searchTerm}
@@ -118,7 +131,7 @@ class Layout extends Component {
                     <Filter filtered={(e) => this.filterHandler(e)} />
                 </div>
                 <Countries countries={this.state.countries} />
-            </>
+            </LayoutWrapper>
         );
     }
 }

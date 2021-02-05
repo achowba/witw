@@ -1,13 +1,15 @@
+import { withRouter } from "react-router";
 import styled from "styled-components";
+
 import arrow from '../../../assets/img/left-arrow.svg';
 
 const Button = styled.button`
     align-items: center;
-    background: white;
+    background-color: ${props => props.theme.navBg};
     border: none;
     border-radius: 3px;
-    box-shadow: 0px 0px 20px 2px #ececec;
-    color: #333333;
+    box-shadow: ${props => props.theme.searchShadow};
+    color: ${props => props.theme.boldText};
     cursor: pointer;
     display: flex;
     font-size: 1rem;
@@ -25,11 +27,17 @@ const Button = styled.button`
     }
 `;
 
-const back = ({ history }) => (
-    <Button onClick={history.goBack}>
-        <img src={arrow} alt=""/>
-        Back
-    </Button>
-);
+const back = (props) => {
+    const goBack = () => {
+        props.history.push('/');
+    }
 
-export default back;
+    return (
+        <Button onClick={goBack}>
+            <img src={arrow} alt="Back Button"/>
+            Back
+        </Button>
+    );
+}
+
+export default withRouter(back);
