@@ -84,10 +84,8 @@ class Layout extends Component {
             });
         } else {
             let foundCountries = countries.filter((country) => {
-                const [name, capital] = [
-                    country.name.common.toLowerCase(),
-                    country.capital.toLowerCase(),
-                ];
+                const name = country.name ? country.name.common.toLowerCase() : '';
+                const capital = country.capital ? country.capital[0].toLowerCase() : '';
 
                 return name.includes(query) || capital.includes(query);
             });

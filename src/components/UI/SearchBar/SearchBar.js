@@ -39,7 +39,7 @@ const SearchInput = styled.input`
 const searchBar = (props) => (
     <SearchInput
         type="text"
-        placeholder="Search for a country..."
+        placeholder="Search for a country by name or capital..."
         onChange={(e) => props.searched(e)}
         value={props.searchTerm}
     />
