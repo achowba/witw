@@ -32,16 +32,16 @@ const countries = (props) => {
                 {props.countries.map((country, index) => {
                     return (
                         <Link
-                            key={country.alpha3Code}
-                            to={`/country/${country.name.toLowerCase()}`}
+                            key={country.cca3}
+                            to={`/country/${country.name.common.toLowerCase()}`}
                         >
                             <Country
-                                key={country.alpha3Code}
-                                name={country.name}
+                                key={country.cca3}
+                                name={country.name.common}
                                 population={country.population}
                                 region={country.region}
                                 capital={country.capital}
-                                flag={country.flag}
+                                flag={country.flags.svg}
                             ></Country>
                         </Link>
                     );

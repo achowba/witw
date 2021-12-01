@@ -73,9 +73,14 @@ class CountryDetail extends Component {
     }
 
     getLanguages = (languages) => {
-        const languageNames = languages.map(({ name }) => name);
+        const languageNames = Object.keys(languages).map(( lang ) => lang);
         return languageNames.join(", ");
     };
+
+    getCurrencies = (currencies) => {
+        const currenciesArray = Object.keys(currencies).map((c) => currencies[c].name)
+        return currenciesArray.join(", ");
+    }
 
     render() {
         let countryDetails = null;
@@ -85,20 +90,20 @@ class CountryDetail extends Component {
                     <div
                         className="__flag"
                         style={{
-                            backgroundImage: `url(${this.state.country.flag})`,
+                            backgroundImage: `url(${this.state.country.flags.svg})`,
                         }}
                         alt="Flag"
                     ></div>
                     <div className="__details">
-                        <h1>{this.state.country.name}</h1>
+                        <h1>{this.state.country.name.common}</h1>
                         <span>
                             <p>
                                 <b>Native Name: </b>
-                                {this.state.country.nativeName}
+                                {this.state.country.name.common}
                             </p>
                             <p>
                                 <b>Top Level Domain: </b>
-                                {this.state.country.topLevelDomain[0]}
+                                {this.state.country.tld[0]}
                             </p>
                         </span>
                         <span>
@@ -111,7 +116,12 @@ class CountryDetail extends Component {
                             </p>
                             <p>
                                 <b>Currencies: </b>
-                                {this.state.country.currencies[0].name}
+                                {this.getCurrencies(
+                                    this.state.country.currencies
+                                )}
+                                {/* {Object.keys(this.state.country.currencies).forEach((c) => {
+                                    return this.state.country.currencies[c].name;
+                                })} */}
                             </p>
                         </span>
                         <span>

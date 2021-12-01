@@ -85,7 +85,7 @@ class Layout extends Component {
         } else {
             let foundCountries = countries.filter((country) => {
                 const [name, capital] = [
-                    country.name.toLowerCase(),
+                    country.name.common.toLowerCase(),
                     country.capital.toLowerCase(),
                 ];
 
