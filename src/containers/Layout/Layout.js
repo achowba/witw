@@ -40,9 +40,11 @@ class Layout extends Component {
         axios
             .get(`/all`)
             .then((response) => {
+                const result = response.data.sort((a, b) => a.name.common.localeCompare(b.name.common));
+
                 this.setState({
-                    countries: response.data,
-                    initialCountries: response.data,
+                    countries: result,
+                    initialCountries: result,
                 });
             })
             .catch((err) => {
